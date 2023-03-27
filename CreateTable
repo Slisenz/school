@@ -1,0 +1,22 @@
+CREATE TABLE "group" (
+    group_id SERIAL,
+    group_name varchar(5) UNIQUE,
+    size int
+);
+
+CREATE TABLE students (
+    student_id SERIAL PRIMARY KEY ,
+    group_name VARCHAR(5),
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE courses (
+    course_id SERIAL UNIQUE,
+    course_name VARCHAR(20)
+);
+
+CREATE TABLE student_courses (
+    student_id INT  REFERENCES students (student_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    course_id INT  REFERENCES courses (course_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
